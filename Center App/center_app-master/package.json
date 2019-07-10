@@ -1,0 +1,10 @@
+{
+  "name": "",
+  "version": "",
+  "dependencies": {
+    "express": "^4.15.3",
+    "jquery": "^3.2.1",
+    "serialport": "^5.0.0-beta8",
+    "socket.io": "^2.0.3"
+  }
+}

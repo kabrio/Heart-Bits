@@ -1,0 +1,6 @@
+[submodule "rtmidi"]
+	path = libraries/rtmidi
+	url = https://github.com/thestk/rtmidi.git
+[submodule "libraries/qextserialport"]
+	path = libraries/qextserialport
+	url = https://github.com/qextserialport/qextserialport.git

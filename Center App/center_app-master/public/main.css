@@ -1,0 +1,17 @@
+body {
+  color: rgb(39, 39, 39);
+  margin: 0;
+}
+
+h2 {
+  color: rgb(105, 116, 124);
+  background-color: rgb(39, 39, 39);
+  margin: 0;
+  padding: 25px;
+
+  /*font-family: 'Varela Round', sans-serif;*/
+  font-family: 'Roboto Mono', monospace;
+  /*font-family: 'Poppins', sans-serif;*/
+  /*font-family: 'Raleway', sans-serif;*/
+  /*font-family: 'Montserrat', sans-serif;*/
+}
