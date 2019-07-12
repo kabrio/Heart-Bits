@@ -3,6 +3,8 @@ import themidibus.*;
 import oscP5.*;
 import netP5.*;
 
+boolean debug = false;
+
 //OSC
 OscP5 oscP5;
 NetAddress myRemoteLocation;
@@ -17,7 +19,7 @@ int velocity = 127; //default MIDI velocity = loudness (0 - 127)
 
 void setup() {
   size(400, 400);
-  frameRate(25);
+ // frameRate(25);
   
 //MIDI
   MidiBus.list(); // List all available Midi devices on STDOUT. This will show each device's index and name.
@@ -72,15 +74,17 @@ void mousePressed() {
 /* incoming osc message are forwarded to the oscEvent method. */
 void oscEvent(OscMessage theOscMessage) {
   /* print the address pattern and the typetag of the received OscMessage */
+  if(debug) {
   print("### received an osc message.");
   print(" addrpattern: "+theOscMessage.addrPattern());
   println(" typetag: "+theOscMessage.typetag());
+  }
   
   // only update oscVal if it has changed
   if (prevOscVal != theOscMessage.get(0).intValue()) {
     oscVal = theOscMessage.get(0).intValue();
     prevOscVal = oscVal;
-    println(" value: "+oscVal);
+    if(debug) println(" value: "+oscVal);
   }
   
 

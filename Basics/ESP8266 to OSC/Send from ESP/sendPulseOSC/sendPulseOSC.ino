@@ -13,7 +13,7 @@
 #include <OSCMessage.h>
 
 char ssid[] = "die basis";          // your network SSID (name)
-char pass[] = "chesini93pornbike";  // your network password
+char pass[] = "";  // your network password
 
 WiFiUDP Udp;                                // A UDP instance to let us send and receive packets over UDP
 const IPAddress outIp(10, 0, 1, 108);       // remote IP of the computer to receive OSC. Note: this might change.
