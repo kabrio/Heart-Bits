@@ -22,7 +22,6 @@
 
 //  Variables
 int PulseSensorPurplePin = 0;        // Pulse Sensor PURPLE WIRE connected to ANALOG PIN 0
-int LED13 = 13;   //  The on-board Arduion LED
 
 
 int Signal;                // holds the incoming raw data. Signal value can range from 0-1024
@@ -46,9 +45,9 @@ void loop() {
 
 
    if(Signal > Threshold){                          // If the signal is above "550", then "turn-on" Arduino's on-Board LED.
-     digitalWrite(BUILTIN_LED,HIGH);
+     digitalWrite(BUILTIN_LED,LOW);
    } else {
-     digitalWrite(BUILTIN_LED,LOW);                //  Else, the sigal must be below "550", so "turn-off" this LED.
+     digitalWrite(BUILTIN_LED,HIGH);                //  Else, the sigal must be below "550", so "turn-off" this LED.
    }
 
 
