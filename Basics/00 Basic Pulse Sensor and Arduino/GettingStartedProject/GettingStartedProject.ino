@@ -20,29 +20,29 @@
 
 
 //  Variables
-const int pulseSensorPin = 0;        // PulseSensor Signal (S) wire connected to ANALOG PIN 0 (A0)
-int val;                            // Holds the incoming raw data. Signal value can range from 0-1024
+const int pulseSensorPin = 0;        // Pulse Sensor signal (S) wire connected to ANALOG PIN 0 (A0)
+int sensorVal;                       // Holds the incoming raw data. Signal value can range from 0-1024
 int threshold = 135;                 // If sensor value exceeds this value, we detect a beat.
 
 
 // The SetUp Function:
 void setup() {
-  pinMode(BUILTIN_LED, OUTPUT);        // pin that will blink to your heartbeat!
-  Serial.begin(9600);         // Set's up Serial Communication at certain speed.
+  pinMode(BUILTIN_LED, OUTPUT);     // Setting pin of built in LED as output to be able to turn it on or off.
+  Serial.begin(115200);            // Set's up Serial Communication at certain speed.
 }
 
 // The Main Loop Function
 void loop() {
 
-  val = analogRead(pulseSensorPin);  // Read the PulseSensor's value.
+  sensorVal = analogRead(pulseSensorPin);  // Read the PulseSensor's value.
   // Assign this value to the "Signal" variable.
 
-  Serial.println(val);                    // Send the Signal value to Serial Plotter.
+  Serial.println(sensorVal);                    // Send the signal value to Serial Plotter.
 
-  if (val > threshold) {                        // If the signal is above "550", then "turn-on" Arduino's on-Board LED.
+  if (sensorVal > threshold) {                      // If the signal is above threshold, then turn on LED.
     digitalWrite(BUILTIN_LED, HIGH);
   } else {
-    digitalWrite(BUILTIN_LED, LOW);               //  Else, the sigal must be below "550", so "turn-off" this LED.
+    digitalWrite(BUILTIN_LED, LOW);               //  Else, the signal must be below threshold, so turn off this LED.
   }
 
   delay(10);
