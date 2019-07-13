@@ -12,17 +12,17 @@
 #include <WiFiUdp.h>
 #include <OSCMessage.h>
 
-char ssid[] = "die basis";          // your network SSID (name)
+char ssid[] = "sandwirt";          // your network SSID (name)
 char pass[] = "";  // your network password
 
 WiFiUDP Udp;                                // A UDP instance to let us send and receive packets over UDP
-const IPAddress outIp(10, 0, 1, 108);       // remote IP of the computer to receive OSC. Note: this might change.
+const IPAddress outIp(192, 168, 0, 45);       // remote IP of the computer to receive OSC. Note: this might change.
 const unsigned int outPort = 9999;          // remote port to receive OSC
 const unsigned int localPort = 8888;        // local port to listen for OSC packets (actually not used for sending)
 
 // Pulse Sensor
 int pulseSensorPin = 0;        // Pulse Sensor signal (S) wire connected to ANALOG PIN 0 (A0)
-int val;                            // Holds the incoming raw data. Signal value can range from 0-1024
+int sensorVal;                            // Holds the incoming raw data. Signal value can range from 0-1024
 int threshold = 135;                 // If sensor value exceeds this value, we detect a beat.
 
 void setup() {
@@ -54,10 +54,10 @@ void setup() {
 }
 
 void loop() {
-  int val = analogRead(pulseSensorPin);     // Read the PulseSensor's value.
-  Serial.println(val);                            // Send the Signal value to Serial Plotter.
+  int sensorVal = analogRead(pulseSensorPin);     // Read the PulseSensor's value.
+  Serial.println(sensorVal);                      // Send the signal value to Serial Plotter.
 
-  if (val > threshold) {                         // If the signal is above threshold, then turn on LED.
+  if (sensorVal > threshold) {                    // If the signal is above threshold, then turn on LED.
     digitalWrite(BUILTIN_LED, LOW);
   } else {
     digitalWrite(BUILTIN_LED, HIGH);             //  Else, the signal must be below threshold, so turn off this LED.
@@ -65,7 +65,7 @@ void loop() {
 
 
   OSCMessage msg("/esp/pulse");
-  msg.add(val);
+  msg.add(sensorVal);
   Udp.beginPacket(outIp, outPort);
   msg.send(Udp);
   Udp.endPacket();
