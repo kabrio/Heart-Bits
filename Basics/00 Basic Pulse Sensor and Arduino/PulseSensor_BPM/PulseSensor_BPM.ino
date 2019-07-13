@@ -94,11 +94,12 @@ void setup() {
        which doesn't use interrupts.
     */
     for(;;) {
+      Serial.println("PulseSensor initialization failed");
       // Flash the led to show things didn't work.
       digitalWrite(PULSE_BLINK, LOW);
-      delay(50);
+      delay(300);
       digitalWrite(PULSE_BLINK, HIGH);
-      delay(50);
+      delay(300);
     }
   }
 }

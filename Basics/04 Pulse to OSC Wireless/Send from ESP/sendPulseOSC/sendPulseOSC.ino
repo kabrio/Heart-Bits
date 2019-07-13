@@ -21,13 +21,13 @@ const unsigned int outPort = 9999;          // remote port to receive OSC
 const unsigned int localPort = 8888;        // local port to listen for OSC packets (actually not used for sending)
 
 // Pulse Sensor
-int pulseSensorPurplePin = 0;        // Pulse Sensor signal wire connected to ANALOG PIN 0
-int val;                            // holds the incoming raw data. Signal value can range from 0-1024
-int threshold = 135;                 // If val exceeds this value, we detect a beat.
+int pulseSensorPin = 0;        // Pulse Sensor signal (S) wire connected to ANALOG PIN 0 (A0)
+int val;                            // Holds the incoming raw data. Signal value can range from 0-1024
+int threshold = 135;                 // If sensor value exceeds this value, we detect a beat.
 
 void setup() {
-  Serial.begin(9600);
-  pinMode(BUILTIN_LED, OUTPUT);         // pin that will blink to your heartbeat!
+  Serial.begin(115200);
+  pinMode(BUILTIN_LED, OUTPUT);         // Setting pin of built in LED as output to be able to turn it on or off.
 
   // Connect to WiFi network
   Serial.println();
@@ -54,13 +54,13 @@ void setup() {
 }
 
 void loop() {
-  int val = analogRead(pulseSensorPurplePin);     // Read the PulseSensor's value.
+  int val = analogRead(pulseSensorPin);     // Read the PulseSensor's value.
   Serial.println(val);                            // Send the Signal value to Serial Plotter.
 
-  if (val > threshold) {                         // If the signal is above threshold, then turn-on LED.
+  if (val > threshold) {                         // If the signal is above threshold, then turn on LED.
     digitalWrite(BUILTIN_LED, LOW);
   } else {
-    digitalWrite(BUILTIN_LED, HIGH);             //  Else, the signal must be below threshold, so "turn-off" this LED.
+    digitalWrite(BUILTIN_LED, HIGH);             //  Else, the signal must be below threshold, so turn off this LED.
   }
 
 
