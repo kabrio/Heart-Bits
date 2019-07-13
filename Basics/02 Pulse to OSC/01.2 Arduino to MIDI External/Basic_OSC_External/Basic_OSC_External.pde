@@ -16,7 +16,7 @@ int treshold = 510; //this may be different for everyone and changes during time
 
 void setup() {
   String portName = Serial.list()[1]; //change the 0 to a 1 or 2 etc. to match your port
-  myPort = new Serial(this, portName, 115200);
+  myPort = new Serial(this, portName, 9600);
   size(400, 400);
   background(0);
 
