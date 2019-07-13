@@ -10,9 +10,11 @@ import netP5.*;
 
 OscP5 oscP5;
 NetAddress myRemoteLocation;
-String remoteIP = "127.0.0.1";  // Set this to IP adress of computer/device you want to send OSC to.
+String remoteIP = "10.0.1.106";  // Set this to IP adress of computer/device you want to send OSC to.
+String data;
 
 int val; // Value received will be assigned to this
+boolean  dataReady = false; 
 
 void setup() {
   size(400, 400);
@@ -37,25 +39,44 @@ void setup() {
    * oscP5.send() when sending osc packets to another computer, device, 
    * application. usage see below. 
    */
-  myRemoteLocation = new NetAddress(remoteIP, 9999);
+  myRemoteLocation = new NetAddress(remoteIP, 12000);
 }
 
 
 void draw() {
   background(0);  
-  // Everything happens in serialEvent()
+  if (dataReady) {
+      OscMessage myMessage = new OscMessage("/test");
+  
+  if (data != null) myMessage.add(data); /* add an int to the osc message */
+  oscP5.send(myMessage, myRemoteLocation);
+  println("Sending osc message.");
+  dataReady = false; 
+  }
+}
+
+
+void serialEvent(Serial myPort) {
+  data = myPort.readStringUntil('\n'); // Read data until end of line
+  if (data != null) {
+    //println(data);
+      dataReady = true; 
+  }
+
+  //float valF = float(data);          
+  //val = int(valF); 
+  //println(val);
+
 }
 
 void mousePressed() {
   /* in the following different ways of creating osc messages are shown by example */
   OscMessage myMessage = new OscMessage("/test");
-
-  myMessage.add(123); /* add an int to the osc message */
-
-  /* send the message */
+  
+  if (data != null) myMessage.add(data); /* add an int to the osc message */
   oscP5.send(myMessage, myRemoteLocation);
+  println("sending osc msg.");
 }
-
 
 /* incoming osc message are forwarded to the oscEvent method. */
 void oscEvent(OscMessage theOscMessage) {
@@ -63,15 +84,5 @@ void oscEvent(OscMessage theOscMessage) {
   print("### received an osc message.");
   print(" addrpattern: "+theOscMessage.addrPattern());
   println(" typetag: "+theOscMessage.typetag());
-}
-
-void serialEvent(Serial myPort) {
-  String data = myPort.readStringUntil('\n'); // Read data until end of line
-  float valF = float(data);          
-  val = int(valF); 
-  println(val);
-  OscMessage myMessage = new OscMessage("/test");
-  myMessage.add(val); /* add an int to the osc message */
-  /* send the message */
-  oscP5.send(myMessage, myRemoteLocation);
+  println(" value: "+theOscMessage.get(0).stringValue());
 }
