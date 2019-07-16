@@ -1,11 +1,10 @@
 /*  PulseSensor Starter Project and Signal Tester
     The Best Way to Get Started  With, or See the Raw Signal of, your PulseSensor.com™ & Arduino.
 
-    Here is a link to the tutorial
-    https://pulsesensor.com/pages/code-and-guide
-
-    WATCH ME (Tutorial Video):
-    https://www.youtube.com/watch?v=RbB8NSRa5X4
+    Edited for Hackers & Designers, 2019 by
+    Jonas Bo, Ana Jeli
+    for
+    Heart-Bits Workshop
 
 
   -------------------------------------------------------------
@@ -15,8 +14,22 @@
   4) This is the direct Pulse Sensor's Signal.
   5) A great first-step in troubleshooting your circuit and connections.
   6) "Human-readable" code that is newbie friendly."
+  7) Connect your sensor as described below.
+  8) Of course, please connect your Arduino compatible board to your computer.
+  9) Upload this sketch, if you feel like it. :)
+  10) Select "Serial Plotter" from "Tools" in your Arduino softwares menu.
+  1) This shows a live human Heartbeat Pulse.
+
+  
+  
+   ( Here is a link to the tutorial
+     https://pulsesensor.com/pages/code-and-guide
+
+    WATCH ME LATER (Tutorial Video):
+    https://www.youtube.com/watch?v=RbB8NSRa5X4 )
 
 */
+
 
 
 //  Variables

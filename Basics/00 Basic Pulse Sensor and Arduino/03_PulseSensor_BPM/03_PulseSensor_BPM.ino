@@ -113,7 +113,7 @@ void loop() {
   delay(20);
 
   // write the latest sample to Serial.
- pulseSensor.outputSample();
+ // pulseSensor.outputSample();
 
   /*
      If a beat has happened since we last checked,
@@ -121,5 +121,6 @@ void loop() {
    */
   if (pulseSensor.sawStartOfBeat()) {
    pulseSensor.outputBeat();
+   pulseSensor.outputSample();
   }
 }
