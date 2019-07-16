@@ -6,10 +6,10 @@ import themidibus.*;
 
 MidiBus myBus;           // The MidiBus - for sending/receiving data to/from MIDI device
 Serial myPort;           // Create object from Serial class
-int channel = 0;         // The MIDI device you are using 
+int channel = 1;         // The MIDI device you are using 
 
 int noteValue = 64;      // The initial value of the note that will play
-int velocity = 36;       // The initial value of the velocity that will play
+int velocity = 127;       // The initial value of the velocity that will play
 
 String val;              // Data received from the serial port as String
 float valF;              // float value of val
@@ -32,7 +32,7 @@ void setup() {
   // Either you can
   //                   Parent In Out
   //                     |    |  |
-  //myBus = new MidiBus(this, 0, 1); // Create a new MidiBus using the device index to select the Midi input and output devices respectively.
+  //myBus = new MidiBus(this, 0, 2); // Create a new MidiBus using the device index to select the Midi input and output devices respectively.
 
   // or you can ...
   //                   Parent         In                   Out
@@ -41,7 +41,7 @@ void setup() {
 
   //                 Parent In Out
   //                   |    |  |
-  myBus = new MidiBus(this, 1, 2); // Create a new MidiBus
+  myBus = new MidiBus(this, 0, 2); // Create a new MidiBus
   
 }
 
@@ -49,6 +49,7 @@ void setup() {
 void draw() {                                      
   if ( myPort.available() > 0) {                  // If data is available,
     val = myPort.readStringUntil('\n');           // read the data from the port until new line
+    println(val);
     valF = float(val);                            // and convert it to float
     valI = int(valF);                             // and convert it to int
   }
@@ -56,7 +57,7 @@ void draw() {
   noteValue = (int) map(valI, 490, 520, 36, 56);  // Mapping the heartbeat value (valI) to note value
                                                   // 490, 520 - range of the heartbeat value, change it to fit your needs
                                                   // 36, 56 - range of the note value, change it to fit your needs
-  println("noteValue " + noteValue);              // Printing note values in the console
+  //println("noteValue " + noteValue);              // Printing note values in the console
 
   myBus.sendNoteOn(channel, noteValue, velocity); // Send a Midi noteOn
   delay(200);                                     // Duration of the note - can be changed

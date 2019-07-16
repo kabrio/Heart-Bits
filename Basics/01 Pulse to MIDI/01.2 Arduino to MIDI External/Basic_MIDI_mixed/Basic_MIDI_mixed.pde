@@ -66,23 +66,26 @@ void draw() {
     valI = int(valF);                             // and convert it to int
   }
   
-  noteValue = (int) map(valI, 490, 520, 36, 56);  // Mapping the heartbeat value (valI) to note value
+  noteValue = (int) map(valI, 490, 520, 36, 64);  // Mapping the heartbeat value (valI) to note value
                                                   // 490, 520 - range of the heartbeat value, change it to fit your needs
                                                   // 36, 56 - range of the note value, change it to fit your needs
-  println("noteValue " + noteValue);              // Printing note values in the console
+  //println("noteValue " + noteValue);              // Printing note values in the console
 
   myBus.sendNoteOn(channel, noteValue, velocity); // Send a Midi noteOn
   delay(200);                                     // Duration of the note - can be changed
   myBus.sendNoteOff(channel, noteValue, velocity);// Send a Midi nodeOff
 
-  if (count > 20) {    
-    valueEGType = 0;                              // Changing the EG Type after 20 heartbeats
+  if (count > 30 && count < 50) {    
+    println("hey");
+    valueEGType = 64;                              // Changing the EG Type after 20 heartbeats
 
     myBus.sendControllerChange(channel, controlEGType, valueEGType); // Send a controllerChange for EG Type
     //delay(2000);                                // uncomment if you want to add delay between the changes
   }
   
-  if (count > 30) {     
+  if (count > 50) {   
+        println("heyhey");
+
     valueVCOWave = 0;                            // Changing the EG Type after 30 heartbeats
 
     myBus.sendControllerChange(channel, controlVCOWave, valueVCOWave); // Send a controllerChange for VCOWave
