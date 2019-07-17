@@ -48,6 +48,11 @@ void oscEvent(OscMessage theOscMessage) {
   print("### received an osc message.");
   print(" addrpattern: "+theOscMessage.addrPattern());
   println(" typetag: "+theOscMessage.typetag());
-  println(" value: "+theOscMessage.get(0).intValue());
+  // just the signal
+  println("signal: "+theOscMessage.get(0).intValue());
+  // 3 values
+  //println(" bpm: "+theOscMessage.get(0).intValue());
+  //println(" signal: "+theOscMessage.get(1).intValue());
+  //println(" ibi: "+theOscMessage.get(2).intValue());
 
 }
