@@ -36,6 +36,8 @@ int sensorVal;                       // Holds the incoming raw data. Signal valu
 int threshold = 600;                 // If sensor value exceeds this value, we detect a beat.
 
 
+float sinAngle;
+
 // The SetUp Function:
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);     // Setting pin of built in LED as output to be able to turn it on or off.
@@ -45,7 +47,9 @@ void setup() {
 // The Main Loop Function
 void loop() {
 
-  sensorVal = analogRead(pulseSensorPin);  // Read the PulseSensor's value.
+//  sensorVal = analogRead(pulseSensorPin);  // Read the PulseSensor's value.
+  sinAngle = sinAngle + 0.01;
+  sensorVal = (sin(sinAngle) + 1) / 2 * 1023; // Fake sensor value (if u don't have a sensor..)
   // Assign this value to the "Signal" variable.
 
   Serial.println(sensorVal);                    // Send the signal value to Serial Plotter.
