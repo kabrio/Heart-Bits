@@ -47,9 +47,9 @@ void setup() {
 // The Main Loop Function
 void loop() {
 
-//  sensorVal = analogRead(pulseSensorPin);  // Read the PulseSensor's value.
-  sinAngle = sinAngle + 0.01;
-  sensorVal = (sin(sinAngle) + 1) / 2 * 1023; // Fake sensor value (if u don't have a sensor..)
+  sensorVal = analogRead(pulseSensorPin);  // Read the PulseSensor's value.
+//  sinAngle = sinAngle + 0.01;
+//  sensorVal = (sin(sinAngle) + 1) / 2 * 1023; // Fake sensor value (if u don't have a sensor..)
   // Assign this value to the "Signal" variable.
 
   Serial.println(sensorVal);                    // Send the signal value to Serial Plotter.

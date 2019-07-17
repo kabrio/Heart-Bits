@@ -50,19 +50,18 @@ void setup() {
   // Start Serial
   Serial.begin(9600);
 
-  // Sets up to read Pulse Sensor signal every 2mS  interruptSetup();
 }
 
 
 void loop() {
 
   readPulse();
-//  
-//  Serial.print(BPM);
-//  Serial.print(",");
-//  Serial.print(Signal);
-//  Serial.print(",");
-//  Serial.println(IBI);
+  
+  Serial.print(BPM);
+  Serial.print(",");
+  Serial.print(Signal);
+  Serial.print(",");
+  Serial.println(IBI);
   
   OSCMessage msg("/esp/pulse");
   msg.add(BPM);
