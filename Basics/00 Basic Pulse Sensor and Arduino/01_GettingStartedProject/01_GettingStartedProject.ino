@@ -41,7 +41,7 @@ float sinAngle;
 // The SetUp Function:
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);     // Setting pin of built in LED as output to be able to turn it on or off.
-  Serial.begin(115200);            // Set's up Serial Communication at certain speed.
+  Serial.begin(9600);            // Set's up Serial Communication at certain speed.
 }
 
 // The Main Loop Function

@@ -14,10 +14,10 @@ Sending Pulse Sensor value from the ESP8266 to a remote computer
 char ssid[] = "Yellow Submarine";                   // your network SSID (name)
 char pass[] = "@chterhoek!";                        // your network password
 
-WiFiUDP Udp;                                // A UDP instance to let us send and receive packets over UDP
 const IPAddress outIp(192, 168, 27, 110);     // Remote IP of the computer to receive OSC. Note: this might change.
 const unsigned int outPort = 9999;          // remote port to receive OSC
 const unsigned int localPort = 8888;        // local port to listen for OSC packets (actually not used for sending)
+WiFiUDP Udp;                                // A UDP instance to let us send and receive packets over UDP
 
 // Pulse Sensor
 int pulseSensorPin = 0;                   // Pulse Sensor signal (S) wire connected to ANALOG PIN 0 (A0)

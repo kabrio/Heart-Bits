@@ -10,10 +10,13 @@ import netP5.*;
 OscP5 oscP5;
 NetAddress myRemoteLocation;
 
+int sensorValue;
+
 void setup() {
   size(400,400);
   frameRate(25);
-  /* start oscP5, listening for incoming messages at port 12000 */
+  colorMode(HSB, 360, 100, 100);
+  /* start oscP5, listening for incoming messages at port 9999 */
   oscP5 = new OscP5(this,9999);
   
   /* myRemoteLocation is a NetAddress. a NetAddress takes 2 parameters,
@@ -28,7 +31,10 @@ void setup() {
 
 
 void draw() {
-  background(0);  
+  // Map sensor values to color values 
+  float myColor = map(sensorValue, 200, 600, 0, 360);
+  println(sensorValue);
+  background(0, myColor, 100);  
 }
 
 void mousePressed() {
@@ -45,11 +51,12 @@ void mousePressed() {
 /* incoming osc message are forwarded to the oscEvent method. */
 void oscEvent(OscMessage theOscMessage) {
   /* print the address pattern and the typetag of the received OscMessage */
-  print("### received an osc message.");
-  print(" addrpattern: "+theOscMessage.addrPattern());
-  println(" typetag: "+theOscMessage.typetag());
+  //print("### received an osc message.");
+  //print(" addrpattern: "+theOscMessage.addrPattern());
+  //println(" typetag: "+theOscMessage.typetag());
   // just the signal
-  println("signal: "+theOscMessage.get(0).intValue());
+  sensorValue = theOscMessage.get(0).intValue();
+  //println("signal: "+sensorValue);
   // 3 values
   //println(" bpm: "+theOscMessage.get(0).intValue());
   //println(" signal: "+theOscMessage.get(1).intValue());

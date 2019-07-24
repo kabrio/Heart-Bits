@@ -19,7 +19,7 @@ void draw() {
 
   // Placing points randomly, starting from center of screen.
   strokeWeight(random(40));
-  stroke(dotsHue, random(30, 100), 80);
+  stroke(dotsHue, random(30, 100), 100);
   // Local variables
   int centerX = width/2; // Center of x-axis 
   int centerY = height/2; // Center of y-axis 
